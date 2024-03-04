@@ -17,3 +17,6 @@ vim.api.nvim_set_keymap(
   "<Cmd>lua paste_from_clipboard_in_terminal()<CR>",
   { noremap = true, silent = true }
 )
+
+-- Stop Shift+Space from clearing Terminal
+vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
