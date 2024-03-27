@@ -10,6 +10,7 @@ return {
       dap.configurations.python = dap.configurations.python or {}
 
       table.insert(dap.configurations.python, {
+        justMyCode = false,
         type = "python",
         request = "launch",
         name = "Python Debug Poetry",
