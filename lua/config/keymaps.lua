@@ -21,3 +21,5 @@ vim.api.nvim_set_keymap(
 
 -- Stop Shift+Space from clearing Terminal
 vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>xr", ":LspRestart<CR>", { noremap = true, silent = true })
