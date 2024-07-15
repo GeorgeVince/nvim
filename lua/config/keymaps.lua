@@ -23,3 +23,6 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<leader>xr", ":LspRestart<CR>", { noremap = true, silent = true })
+
+-- Remove the default keymap for <C-n> and map it to <C-v>
+vim.api.nvim_set_keymap("n", "<C-n>", "<C-v>", { noremap = true, silent = true })
