@@ -27,6 +27,10 @@ return {
           client.server_capabilities.hoverProvider = false
         end,
       },
+      tsserver = {
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+        settings = {},
+      },
     },
   },
 }
