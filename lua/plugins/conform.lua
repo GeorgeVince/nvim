@@ -18,10 +18,8 @@ return {
 
     opts.formatters_by_ft.python = function(bufnr)
       if vim.fn.filereadable(black_path) == 1 then
-        vim.notify("Using local black formatter")
         return { "black_local" }
       else
-        vim.notify("Using ruff_fix formatter")
         return { "ruff_format" }
       end
     end
