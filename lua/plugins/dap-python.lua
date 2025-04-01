@@ -5,11 +5,11 @@ return {
       local dap = require("dap")
 
       -- Adapter configuration for Python using debugpy
-      dap.adapters.python = {
-        type = "server",
-        host = "127.0.0.1",
-        port = tonumber(os.getenv("APP_DEBUG_PORT")) or 5678,
-      }
+      -- dap.adapters.python = {
+      --   type = "server",
+      --   host = "127.0.0.1",
+      --   port = tonumber(os.getenv("APP_DEBUG_PORT")) or 5678,
+      -- }
 
       local venvPath = os.getenv("VENV")
       local pythonPath = venvPath and venvPath .. "/bin/python" or "python"
