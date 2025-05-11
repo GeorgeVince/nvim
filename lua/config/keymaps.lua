@@ -22,10 +22,9 @@ vim.api.nvim_set_keymap(
 -- Stop Shift+Space from clearing Terminal
 vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "<leader>xr", ":LspRestart<CR>", { noremap = true, silent = true })
-
 -- Remove the default keymap for <C-n> and map it to <C-v>
 vim.api.nvim_set_keymap("n", "<C-n>", "<C-v>", { noremap = true, silent = true })
 
--- Copy the current file path to the clipboard
-vim.api.nvim_set_keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', { noremap = true, silent = true })
+local keymap = vim.keymap.set
+keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', {desc="Copy current filename"})
+

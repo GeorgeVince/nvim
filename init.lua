@@ -17,3 +17,14 @@ vim.api.nvim_set_keymap(
 
 -- Stop Shift+Space from clearing Terminal
 vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
+
+vim.lsp.enable('pyright')
+vim.lsp.enable('ruff')
+
+
+-- See LSPs
+vim.api.nvim_create_user_command('LspClients', function()
+  for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = vim.api.nvim_get_current_buf() })) do
+    print('Active LSP: ' .. client.name)
+  end
+end, {})
