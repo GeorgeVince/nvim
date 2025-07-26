@@ -1,4 +1,3 @@
--- Use the local black formatter if it exists, otherwise use the ruff_format formatter
 return {
   "stevearc/conform.nvim",
   opts = function(_, opts)
@@ -6,6 +5,7 @@ return {
     opts.formatters = opts.formatters or {}
 
     local black_path = "./.venv/bin/black"
+
     -- Define a custom formatter 'black_local' that uses the local black executable
     opts.formatters.black_local = {
       command = black_path,
@@ -13,14 +13,20 @@ return {
       stdin = true,
     }
 
+    opts.formatters.ruff_project = {
+      command = "uv",
+      args = { "run", "ruff", "format", "-" },
+      stdin = true,
+      cwd = require("conform.util").root_file({ "pyproject.toml" }),
+    }
+
     -- Ensure the formatters_by_ft table exists
     opts.formatters_by_ft = opts.formatters_by_ft or {}
-
     opts.formatters_by_ft.python = function(bufnr)
       if vim.fn.filereadable(black_path) == 1 then
         return { "black_local" }
       else
-        return { "ruff_format" }
+        return { "ruff_project" }
       end
     end
   end,
