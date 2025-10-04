@@ -1,6 +1,6 @@
 return {
-  'benomahony/uv.nvim',
+  "benomahony/uv.nvim",
   config = function()
-    require('uv').setup()
+    require("uv").setup()
   end,
 }
