@@ -38,6 +38,16 @@ return {
         position = "left",
         width = 30,
       },
+      default_component_configs = {
+        diagnostics = {
+          symbols = {
+            hint = "",
+            info = "",
+            warn = "",
+            error = "",
+          },
+        },
+      },
     },
   },
 }

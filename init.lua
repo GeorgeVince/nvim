@@ -28,3 +28,8 @@ vim.api.nvim_create_user_command('LspClients', function()
     print('Active LSP: ' .. client.name)
   end
 end, {})
+
+
+vim.opt.undofile = true
+vim.opt.number = true
+

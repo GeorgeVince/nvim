@@ -11,13 +11,26 @@ return {
         ensure_installed = { "pyright", "ruff" },
       })
 
-      local lspconfig = require("lspconfig")
-
       local pyright_config = require("lsp.pyright")
-      lspconfig.pyright.setup(pyright_config)
+      vim.lsp.config.pyright = pyright_config
+      vim.lsp.enable('pyright')
 
       local ruff_config = require("lsp.ruff")
-      lspconfig.ruff.setup(ruff_config)
+      vim.lsp.config.ruff = ruff_config
+      vim.lsp.enable('ruff')
+
+      vim.diagnostic.config({
+        virtual_text = {
+          spacing = 4,
+          prefix = "●",
+        },
+        severity_sort = true,
+        signs = false,
+        float = {
+          border = "rounded",
+          source = "always",
+        },
+      })
     end,
   },
 }
