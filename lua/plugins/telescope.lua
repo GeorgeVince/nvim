@@ -30,7 +30,12 @@ return {
         find_files = {
           theme = "dropdown",
           previewer = false,
-	  find_command = { "rg", "--files", "--hidden", "--glob", "!**.venv",},
+	  find_command = { "rg", "--files", "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__" },
+        },
+        live_grep = {
+          additional_args = function()
+            return { "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__" }
+          end,
         },
       },
     })
