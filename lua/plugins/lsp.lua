@@ -8,7 +8,7 @@ return {
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "pyright", "ruff" },
+        ensure_installed = { "pyright", "ruff", "terraformls" },
       })
 
       local pyright_config = require("lsp.pyright")
@@ -18,6 +18,12 @@ return {
       local ruff_config = require("lsp.ruff")
       vim.lsp.config.ruff = ruff_config
       vim.lsp.enable('ruff')
+
+      vim.lsp.config.terraformls = {
+        cmd = { 'terraform-ls', 'serve' },
+        filetypes = { 'terraform', 'tf' },
+      }
+      vim.lsp.enable('terraformls')
 
       vim.diagnostic.config({
         virtual_text = {
