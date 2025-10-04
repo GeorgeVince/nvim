@@ -30,3 +30,5 @@ keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', {desc="Copy current filen
 
 vim.keymap.set("o", "ag", ":<C-u>normal! ggVG<CR>", { desc = "Select entire buffer" })
 vim.keymap.set("x", "ag", ":<C-u>normal! ggVG<CR>", { desc = "Select entire buffer" })
+
+vim.keymap.set("n", "]e", "<cmd>DiagnosticsToggle<cr>", { desc = "Toggle Diagnostics" })

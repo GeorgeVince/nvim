@@ -31,6 +31,16 @@ return {
           source = "always",
         },
       })
+
+      vim.api.nvim_create_user_command('DiagnosticsToggle', function()
+        local current = vim.diagnostic.config().virtual_text
+        vim.diagnostic.config({
+          virtual_text = not current and {
+            spacing = 4,
+            prefix = "●",
+          } or false
+        })
+      end, {})
     end,
   },
 }

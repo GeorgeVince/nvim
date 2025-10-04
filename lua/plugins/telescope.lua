@@ -16,6 +16,15 @@ return {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
             ["<esc>"] = actions.close,
+            ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+            ["<C-d>"] = actions.preview_scrolling_down,
+            ["<C-u>"] = actions.preview_scrolling_up,
+          },
+          n = {
+            ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+            ["<C-d>"] = actions.preview_scrolling_down,
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
           },
         },
         file_ignore_patterns = { "node_modules", ".git/" },
@@ -30,11 +39,11 @@ return {
         find_files = {
           theme = "dropdown",
           previewer = false,
-	  find_command = { "rg", "--files", "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__" },
+	  find_command = { "rg", "--files", "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__", "--glob", "!**.mypy_cache" },
         },
         live_grep = {
           additional_args = function()
-            return { "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__" }
+            return { "--hidden", "--no-ignore-vcs", "--glob", "!.git/", "--glob", "!**.venv", "--glob", "!**__pycache__", "--glob", "!**.mypy_cache" }
           end,
         },
       },
