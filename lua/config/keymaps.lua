@@ -28,3 +28,12 @@ vim.api.nvim_set_keymap("n", "<C-n>", "<C-v>", { noremap = true, silent = true }
 local keymap = vim.keymap.set
 keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', {desc="Copy current filename"})
 
+-- Window navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window" })
+
+-- -- Buffer navigation
+-- vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
