@@ -4,7 +4,10 @@ return {
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
-      "mfussenegger/nvim-dap-python",
+      {
+        "mfussenegger/nvim-dap-python",
+        build = false,
+      },
     },
     keys = {
       {
@@ -63,7 +66,7 @@ return {
 
       dapui.setup()
 
-      require("dap-python").setup("python")
+      require("dap-python").setup("uv")
       dap.configurations.python = {
         {
           type = "python",
