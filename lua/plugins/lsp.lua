@@ -11,17 +11,22 @@ return {
         ensure_installed = { "pyright", "ruff", "terraformls" },
       })
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local pyright_config = require("lsp.pyright")
+      pyright_config.capabilities = capabilities
       vim.lsp.config.pyright = pyright_config
       vim.lsp.enable('pyright')
 
       local ruff_config = require("lsp.ruff")
+      ruff_config.capabilities = capabilities
       vim.lsp.config.ruff = ruff_config
       vim.lsp.enable('ruff')
 
       vim.lsp.config.terraformls = {
         cmd = { 'terraform-ls', 'serve' },
         filetypes = { 'terraform', 'tf' },
+        capabilities = capabilities,
       }
       vim.lsp.enable('terraformls')
 
