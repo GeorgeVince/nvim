@@ -9,23 +9,6 @@ return {
     local telescope = require("telescope")
     local actions = require("telescope.actions")
 
-    local ignore_patterns = {
-      ".git/",
-      "**.venv",
-      "**__pycache__",
-      "**.mypy_cache",
-      "**.pytest_cache",
-    }
-
-    local function build_rg_globs(patterns)
-      local args = {}
-      for _, pattern in ipairs(patterns) do
-        table.insert(args, "--glob")
-        table.insert(args, "!" .. pattern)
-      end
-      return args
-    end
-
     telescope.setup({
       defaults = {
         mappings = {
@@ -56,17 +39,11 @@ return {
         find_files = {
           theme = "dropdown",
           previewer = false,
-          find_command = vim.list_extend(
-            { "rg", "--files", "--hidden", "--no-ignore-vcs" },
-            build_rg_globs(ignore_patterns)
-          ),
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
         },
         live_grep = {
           additional_args = function()
-            return vim.list_extend(
-              { "--hidden", "--no-ignore-vcs" },
-              build_rg_globs(ignore_patterns)
-            )
+            return { "--hidden", "-g", "!.git" }
           end,
         },
       },
