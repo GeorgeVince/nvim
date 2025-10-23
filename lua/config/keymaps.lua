@@ -26,9 +26,27 @@ vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = tr
 vim.api.nvim_set_keymap("n", "<C-n>", "<C-v>", { noremap = true, silent = true })
 
 local keymap = vim.keymap.set
-keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', {desc="Copy current filename"})
+keymap("n", "<leader>yf", ':let @+=expand("%:p")<CR>', { desc = "Copy current filename" })
 
 vim.keymap.set("o", "ag", ":<C-u>normal! ggVG<CR>", { desc = "Select entire buffer" })
 vim.keymap.set("x", "ag", ":<C-u>normal! ggVG<CR>", { desc = "Select entire buffer" })
 
-vim.keymap.set("n", "]e", "<cmd>DiagnosticsToggle<cr>", { desc = "Toggle Diagnostics" })
+vim.keymap.set("n", "]o", "<cmd>DiagnosticsToggle<cr>", { desc = "Toggle Diagnostics" })
+
+-- Jump to next/prev error
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Next Error" })
+
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Prev Error" })
+
+-- Jump to next/prev diagnostic (any severity)
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next Diagnostic" })
+
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Prev Diagnostic" })
