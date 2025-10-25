@@ -50,3 +50,8 @@ end, { desc = "Next Diagnostic" })
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Prev Diagnostic" })
+
+-- Display current diagnostic in a floating window
+vim.keymap.set("n", "<leader>cd", function()
+  vim.diagnostic.open_float({ focus = true })
+end, { desc = "Line Diagnostics" })
