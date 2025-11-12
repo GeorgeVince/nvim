@@ -6,6 +6,5 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.hidden = true
 
 vim.opt.number = true
-vim.opt.relativenumber = true
 
 vim.opt.cmdheight = 0

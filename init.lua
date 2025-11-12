@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 require("config.autocmds")
+require("config.options")
 
 -- CTRL+V Copy Paste for Terminal
 function _G.paste_from_clipboard_in_terminal()
