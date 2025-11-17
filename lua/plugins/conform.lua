@@ -48,6 +48,9 @@ return {
         return { "ruff_uv" }
       end
     end
+    opts.formatters_by_ft.terraform = { "terraform_fmt" }
+    opts.formatters_by_ft.tf = { "terraform_fmt" }
+    opts.formatters_by_ft["terraform-vars"] = { "terraform_fmt" }
 
     opts.format_on_save = {
       timeout_ms = 500,
