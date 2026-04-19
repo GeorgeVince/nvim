@@ -1,37 +1,13 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
-require("config.autocmds")
+-- Set leaders before anything else
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Load options first
 require("config.options")
 
--- CTRL+V Copy Paste for Terminal
-function _G.paste_from_clipboard_in_terminal()
-  local system_clipboard_command = "pbpaste" -- Adjust based on your system, e.g., use 'xclip -o' or 'xsel -b' for Linux
-  local paste_command = vim.fn.system(system_clipboard_command)
-  vim.api.nvim_put({ paste_command }, "", false, true)
-end
+-- Load plugins via vim.pack (nvim 0.12 built-in package manager)
+require("config.plugins")
 
-vim.api.nvim_set_keymap(
-  "t",
-  "<C-v>",
-  "<Cmd>lua paste_from_clipboard_in_terminal()<CR>",
-  { noremap = true, silent = true }
-)
-
--- Stop Shift+Space from clearing Terminal
-vim.api.nvim_set_keymap("t", "<S-Space>", "<nop>", { noremap = true, silent = true })
-
-vim.lsp.enable("pyright")
-vim.lsp.enable("ruff")
-
--- See LSPs
-vim.api.nvim_create_user_command("LspClients", function()
-  for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = vim.api.nvim_get_current_buf() })) do
-    print("Active LSP: " .. client.name)
-  end
-end, {})
-
-vim.opt.undofile = true
-vim.opt.mouse = "a"
-
--- Disable swapfiles
-vim.opt.swapfile = false
+-- Load keymaps and autocmds after plugins are available
+require("config.keymaps")
+require("config.autocmds")
