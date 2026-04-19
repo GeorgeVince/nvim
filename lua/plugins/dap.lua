@@ -74,12 +74,12 @@ return {
           name = "Docker Remote Attach",
           connect = {
             host = "localhost",
-            port = 5678,
+            port = 9001,
           },
           pathMappings = {
             {
               localRoot = vim.fn.getcwd(),
-              remoteRoot = "/app",
+              remoteRoot = "/application",
             },
           },
         },
@@ -88,6 +88,7 @@ return {
           request = "launch",
           name = "Launch File",
           program = "${file}",
+          justMyCode = false,
           pythonPath = function()
             return "python"
           end,
