@@ -290,11 +290,20 @@ telescope.load_extension("fzf")
 
 -------------------------------------------------------------------------------
 -- Treesitter
--- nvim 0.12 has built-in treesitter highlighting. nvim-treesitter now just
--- provides :TSInstall/:TSUpdate commands for parser management.
--- Run :TSInstall python lua terraform hcl vim vimdoc markdown  on first use.
+-- nvim-treesitter provides :TSInstall/:TSUpdate for parser management.
+-- Run :TSInstall python lua terraform hcl vim vimdoc markdown on first use.
+-- Enable treesitter highlighting globally for all filetypes with a parser.
 -------------------------------------------------------------------------------
 require("nvim-treesitter.config").setup()
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(ev)
+    if pcall(vim.treesitter.start, ev.buf) then
+      -- Disable legacy regex syntax highlighting when treesitter is active
+      vim.bo[ev.buf].syntax = ""
+    end
+  end,
+})
 
 -------------------------------------------------------------------------------
 -- LSP (native nvim 0.12 — no plugins needed)
