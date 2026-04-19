@@ -494,7 +494,9 @@ require("mini.bufremove").setup()
 -------------------------------------------------------------------------------
 -- uv.nvim
 -------------------------------------------------------------------------------
-require("uv").setup()
+require("uv").setup({
+  notify_activate_venv = false,
+})
 
 -------------------------------------------------------------------------------
 -- LazyGit - disable tmux navigator keys in lazygit terminal
