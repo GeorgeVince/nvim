@@ -167,6 +167,14 @@ require("noice").setup({
       },
       opts = { skip = true },
     },
+    -- Hide LSP progress messages (e.g. pyright indexing)
+    {
+      filter = {
+        event = "lsp",
+        kind = "progress",
+      },
+      opts = { skip = true },
+    },
   },
   presets = {
     bottom_search = true,
