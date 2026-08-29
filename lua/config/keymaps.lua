@@ -1,5 +1,20 @@
 local keymap = vim.keymap.set
 
+-- Move through Neovim windows, then Herdr panes at the edge
+local function navigator(key, direction)
+  return function()
+    local window = vim.api.nvim_get_current_win()
+    vim.cmd.wincmd(key)
+    if vim.api.nvim_get_current_win() == window and vim.env.HERDR_ENV == "1" then
+      vim.system({ "herdr", "pane", "focus", "--direction", direction, "--current" })
+    end
+  end
+end
+
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+  keymap("n", "<C-" .. key .. ">", navigator(key, direction), { silent = true, desc = "Move " .. direction })
+end
+
 -- CTRL+V Copy Paste (insert mode)
 keymap("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
 
@@ -67,6 +82,7 @@ keymap("n", "<leader>e", function()
   require("config.plugins").ensure_neo_tree()
   vim.cmd("Neotree toggle")
 end, { desc = "Toggle NeoTree" })
+
 
 -------------------------------------------------------------------------------
 -- Telescope

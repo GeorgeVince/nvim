@@ -89,9 +89,6 @@ vim.pack.add({
   gh("tpope/vim-commentary"),
   { src = gh("echasnovski/mini.ai"), name = "mini.ai" },
 
-  -- Navigation
-  gh("christoomey/vim-tmux-navigator"),
-
   -- Markdown
   gh("iamcco/markdown-preview.nvim"),
 
@@ -496,20 +493,6 @@ require("mini.bufremove").setup()
 -------------------------------------------------------------------------------
 require("uv").setup({
   notify_activate_venv = false,
-})
-
--------------------------------------------------------------------------------
--- LazyGit - disable tmux navigator keys in lazygit terminal
--------------------------------------------------------------------------------
-vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "*",
-  callback = function(ev)
-    local bufname = vim.api.nvim_buf_get_name(ev.buf)
-    if bufname:match("lazygit") then
-      vim.keymap.set("t", "<c-j>", "<c-j>", { buffer = ev.buf })
-      vim.keymap.set("t", "<c-k>", "<c-k>", { buffer = ev.buf })
-    end
-  end,
 })
 
 -------------------------------------------------------------------------------

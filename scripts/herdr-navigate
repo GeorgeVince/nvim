@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pane=${HERDR_ACTIVE_PANE_ID:-$HERDR_PANE_ID}
+
+# ponytail: process-name detection until Herdr supports app-aware key passthrough.
+if herdr pane process-info --pane "$pane" | grep -Eq '"name":"(g?vim|nvim(-bin)?)"'; then
+  exec herdr pane send-keys "$pane" "ctrl+$1"
+fi
+
+exec herdr pane focus --pane "$pane" --direction "$2"
